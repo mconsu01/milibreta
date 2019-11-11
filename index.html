@@ -1,13 +1,68 @@
 <!DOCTYPE html>
 <html>
-	<head> Videos
+	<head>
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="./js/jquery.csv.js"></script>
     </head>
 
     <body> 
         <p id="demo"></p>
+        <ol id="videosTable"></ol>
+
+        <style>
+                table, th, td {
+                  border: 1px solid black;
+                  border-collapse: collapse;
+                }
+                th, td {
+                  padding: 5px;
+                  text-align: left;
+                }
+        </style>
+
+        <h2>Videos sobre la Diabetes</h2>
+
+        <table id="finalVideoTable" style="width:100%">
+        <tr>
+            <th>Titulo</th>
+            <th>Duracion</th>
+            <th>Enlace</th>
+            <th>Creador</th>
+            <th>Fecha</th>
+            <th>Categories</th>
+        </tr>
+        <tr>
+            <td>Que es la  diabetes tipo 2?</td>
+            <td>1:51</td>
+            <td> <iframe width="560" height="315" src="https://www.youtube.com/embed/Bl-zY3dkyg0"></iframe></td>
+            <td>My Doctor-Kaiser Permanente</td>
+            <td>Julio 14, 2015</td>
+            <td>General, Diabetes, Definicion, Introduccion</td>
+        </tr>
+        </table>
 
         <script>
-            document.getElementById("demo").innerHTML = "My First JavaScript";
+            function createVideosView(tableText){
+                var outputHTML = "<tr><th>Titulo</th><th>Duracion</th>" +
+                                 "<th>Enlace</th><th>Creador</th>" + 
+                                 "<th>Fecha</th><th>Categorias</th></tr>";
+                var table = $.csv.toObjects(tableText)
+                for (var i = 0; i < table.length; i++) {
+
+                    var row = "<tr><td>" + table[i].Title + "</td>" + "<td>" + table[i].Duration + "</td>" + "<td>" +
+                             table[i].URL + "</td>" + "<td>" + table[i].Creator +
+                             "</td>" + "<td>" + table[i].Date + "</td>" + "<td>" +
+                              table[i].Tags + "</td></tr>";
+                    outputHTML += row;
+                }
+                return outputHTML;
+            }
+
+            fetch("./data/videos.csv")
+            .then(response => response.text())
+            .then(text => document.getElementById("finalVideoTable").innerHTML = createVideosView(text))
+            // var table = $.csv.toArray("./data/videos.csv");
+            document.getElementById("demo").innerHTML = "My Second JavaScript";
         </script>
             
     </body>
