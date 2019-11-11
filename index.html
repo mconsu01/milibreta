@@ -49,8 +49,9 @@
                 var table = $.csv.toObjects(tableText)
                 for (var i = 0; i < table.length; i++) {
 
-                    var row = "<tr><td>" + table[i].Title + "</td>" + "<td>" + table[i].Duration + "</td>" + "<td>" +
-                             table[i].URL + "</td>" + "<td>" + table[i].Creator +
+                    var row = "<tr><td>" + table[i].Title + "</td>" + "<td>" + table[i].Duration + "</td>" +
+                        '<td> <iframe width="560" height="315" src="' + table[i].URL + '"></iframe></td>' +
+                        "<td>" + table[i].Creator +
                              "</td>" + "<td>" + table[i].Date + "</td>" + "<td>" +
                               table[i].Tags + "</td></tr>";
                     outputHTML += row;
