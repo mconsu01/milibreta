@@ -1,53 +1,31 @@
 <!DOCTYPE html>
 <html>
 	<head>
-        <script src="js/jquery-3.4.1.min.js"></script>
-        <script src="./js/jquery.csv.js"></script>
+        <title>Mi Libreta</title>
+
+        <link href="style.css" rel="stylesheet" type="text/css">
+        <style type="text/css" media="all"></style>
+
     </head>
 
     <body> 
 
-        <style>
-                table, th, td {
-                  border: 1px solid black;
-                  border-collapse: collapse;
-                }
-                th, td {
-                  padding: 5px;
-                  text-align: left;
-                }
-        </style>
-        <h1>Bienvenidos a Mi Libreta</h1>
+        <header>
+        
+            <div class="row">
+            <ul class="main-nav">
+                <li class="active"><a href=""> Inicio</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            </div>
 
-        <h2>Videos sobre la Diabetes</h2>
-
-        <table id="finalVideoTable" style="width:100%">
-  
-        </table>
-
-        <script>
-            function createVideosView(tableText){
-                var outputHTML = "<tr><th>Titulo</th><th>Duracion</th>" +
-                                 "<th>Enlace</th><th>Creador</th>" + 
-                                 "<th>Fecha</th><th>Categorias</th></tr>";
-                var table = $.csv.toObjects(tableText)
-                for (var i = 0; i < table.length; i++) {
-
-                    var row = "<tr><td>" + table[i].Title + "</td>" + "<td>" + table[i].Duration + "</td>" +
-                        '<td> <iframe width="560" height="315" src="' + table[i].URL + '"></iframe></td>' +
-                        "<td>" + table[i].Creator +
-                             "</td>" + "<td>" + table[i].Date + "</td>" + "<td>" +
-                              table[i].Tags + "</td></tr>";
-                    outputHTML += row;
-                }
-                return outputHTML;
-            }
-
-            fetch("./data/videos.csv")
-            .then(response => response.text())
-            .then(text => document.getElementById("finalVideoTable").innerHTML = createVideosView(text))
-            // var table = $.csv.toArray("./data/videos.csv");
-        </script>
+            <div class="homepagetitle">
+            <h1>Mi Libreta</h1>
+            </div>
+            
+        </header>
             
     </body>
 
